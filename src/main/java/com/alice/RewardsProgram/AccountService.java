@@ -18,11 +18,13 @@ public class AccountService {
         this.accounts = new ArrayList<>();
     }
 
-    public Optional<Account> addAccount(Account newAccount) {
-        if (newAccount==null)
+    public Optional<Account> addAccount(Account account) {
+        if (account==null)
             return Optional.empty();
-        long newId = accountIdCounter++;
-        newAccount.setAccountId(newId);
+        Account newAccount = new Account();
+        newAccount.setRewardsPoints(account.getRewardsPoints());
+        newAccount.setUserName(account.getUserName());
+        newAccount.setAccountId(accountIdCounter++);
         this.accounts.add(newAccount);
         return Optional.of(newAccount);
     }
