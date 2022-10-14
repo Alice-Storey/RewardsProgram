@@ -85,7 +85,7 @@ public class RewardProgramService {
                 .sum());
     }
 
-    protected long getRewardPoints(Transaction t) {
+    public long getRewardPoints(Transaction t) {
         long rewardsPts = 0L;
         double price = t.getTotalPrice();
         if (price > TWO_POINT_MINIMUM) {
