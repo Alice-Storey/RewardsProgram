@@ -19,9 +19,15 @@ public class RewardProgramService {
 
     Map<Long,List<Transaction>> transactionsByAccount;
 
+    final private double ONE_POINT_MINIMUM = 50.0;
+    final private double TWO_POINT_MINIMUM = 100.00;
+
 
     public Optional<Account> createAccount(String username, String password) {
-        return accountService.addAccount(new Account(username));
+        Account newAccount = accountService.addAccount(new Account(username,password)).orElse(null);
+        if (newAccount==null)
+            return Optional.empty();
+        return Optional.of(newAccount);
     }
     public Optional<Transaction> makeTransaction(long accountId, List<Item> items, Date timestamp) {
         if (accountService.getAccountById(accountId).isEmpty())
@@ -61,7 +67,7 @@ public class RewardProgramService {
             return Optional.empty();
 
         return Optional.of(transactionsByAccount.get(accountId).stream()
-                .mapToLong(Transaction::getRewardPoints)
+                .mapToLong(this::getRewardPoints)
                 .sum());
     }
 
@@ -75,7 +81,20 @@ public class RewardProgramService {
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTime(t.getDate());
                     return (calendar.get(Calendar.MONTH)+1==month);
-                }).mapToLong(Transaction::getRewardPoints)
+                }).mapToLong(this::getRewardPoints)
                 .sum());
+    }
+
+    protected long getRewardPoints(Transaction t) {
+        long rewardsPts = 0L;
+        double price = t.getTotalPrice();
+        if (price > TWO_POINT_MINIMUM) {
+            rewardsPts += (price - TWO_POINT_MINIMUM) * 2;
+            rewardsPts += (TWO_POINT_MINIMUM - ONE_POINT_MINIMUM);
+        }
+        else if (price > ONE_POINT_MINIMUM)
+            rewardsPts += (price - ONE_POINT_MINIMUM);
+
+        return rewardsPts;
     }
 }

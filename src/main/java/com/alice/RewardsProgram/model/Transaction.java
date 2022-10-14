@@ -50,16 +50,4 @@ public class Transaction {
         this.cartItems.removeIf(item->item.itemId==itemId);
     }
 
-    public long getRewardPoints() {
-        long rewardsPts = 0L;
-        double price = this.getTotalPrice();
-        if (price > TWO_POINT_MINIMUM) {
-            rewardsPts += (price - TWO_POINT_MINIMUM) * 2;
-            price = TWO_POINT_MINIMUM;
-        }
-        if (price > ONE_POINT_MINIMUM)
-            rewardsPts += (price - ONE_POINT_MINIMUM);
-
-        return rewardsPts;
-    }
 }
