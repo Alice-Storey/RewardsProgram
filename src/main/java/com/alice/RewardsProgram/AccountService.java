@@ -33,6 +33,10 @@ public class AccountService {
         return this.accounts.stream().filter(acc->acc.getAccountId()==accountId).findFirst();
     }
 
+    public Optional<Account> getAccountByName(String username) {
+        return this.accounts.stream().filter(acc->acc.getUserName().equals(username)).findFirst();
+    }
+
     public Optional<Long> getSizeOfAccounts() {
         return Optional.of((long) accounts.size());
     }
