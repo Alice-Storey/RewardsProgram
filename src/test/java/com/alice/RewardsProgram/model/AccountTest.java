@@ -40,16 +40,6 @@ public class AccountTest {
     }
 
     @Test
-    public void testPojoRewardsPoints() {
-        Account accA = new Account();
-        long points=5;
-
-        assertEquals(0, accA.getRewardsPoints());
-        accA.setRewardsPoints(points);
-        assertEquals(points, accA.getRewardsPoints());
-    }
-
-    @Test
     public void testPojoName() {
         Account accA = new Account();
         String name="Foo";

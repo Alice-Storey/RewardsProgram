@@ -22,7 +22,6 @@ public class AccountService {
         if (account==null)
             return Optional.empty();
         Account newAccount = new Account();
-        newAccount.setRewardsPoints(account.getRewardsPoints());
         newAccount.setUserName(account.getUserName());
         newAccount.setAccountId(accountIdCounter++);
         this.accounts.add(newAccount);
@@ -43,5 +42,9 @@ public class AccountService {
 
     public boolean deleteAccount(long acctId) {
         return accounts.removeIf(acc -> acc.getAccountId()==acctId);
+    }
+
+    public List<Account> getAccounts() {
+        return accounts;
     }
 }

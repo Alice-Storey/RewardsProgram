@@ -13,7 +13,6 @@ public class Account implements Comparable<Account> {
     @NonNull
     private String userName;
     private Long accountId;
-    private Long rewardsPoints;
     @Override
     public boolean equals(Object o) {
         return (o instanceof Account && this.accountId .equals (((Account)o).accountId));
