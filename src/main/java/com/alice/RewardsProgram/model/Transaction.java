@@ -31,11 +31,15 @@ public class Transaction {
         return cartItems.stream()
             .map(Item::getItemPrice)
             .reduce(Double::sum)
-            .orElseGet(()->0.0);
+            .orElse(0.0);
     }
 
     public void addItem(Item item) {
         this.cartItems.add(item);
+    }
+
+    public void addItems(List<Item> items) {
+        this.cartItems.addAll(items);
     }
 
     public void removeItem(Item item) {
