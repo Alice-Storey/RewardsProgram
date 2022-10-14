@@ -23,6 +23,7 @@ public class AccountService {
             return Optional.empty();
         Account newAccount = new Account();
         newAccount.setUserName(account.getUserName());
+        newAccount.setPassword(account.getPassword()); // TODO: unit test
         newAccount.setAccountId(accountIdCounter++);
         this.accounts.add(newAccount);
         return Optional.of(newAccount);
