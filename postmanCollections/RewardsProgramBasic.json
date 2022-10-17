@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "97c3f2e2-e59c-42bc-9840-39f47f9d6764",
+		"name": "Rewards Program",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8679959"
+	},
+	"item": [
+		{
+			"name": "CreateAccounts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"userName\": \"jane\",\r\n        \"password\": \"1234\"\r\n    },\r\n    {\r\n        \"userName\": \"jane\",\r\n        \"password\": \"1234\"\r\n    },\r\n    {\r\n        \"userName\": \"bob\",\r\n        \"password\": \"1234\"\r\n    },\r\n    {\r\n        \"userName\": \"will\",\r\n        \"password\": \"1234\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/createAccounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"createAccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateItems",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"itemPrice\":51.00, \"itemName\":\"keyboard\"},{\"itemPrice\":101.00, \"itemName\":\"coat\"}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/createItems",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"createItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MakeTransactions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"userId\": 0,\r\n        \"cartItems\" : [{\"itemId\":0}]\r\n    },\r\n    {\r\n        \"userId\": 1,\r\n        \"cartItems\" : [{\"itemId\":1}]\r\n    },\r\n    {\r\n        \"userId\": 2,\r\n        \"cartItems\" : [{\"itemId\":0},{\"itemId\":1}]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/makeTransactions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"makeTransactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRewardsTotal",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getRewardsTotal?userid=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getRewardsTotal"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRewardsForMonth",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/getRewardsForMonth?userid=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"getRewardsForMonth"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewAccounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/viewAccounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewAccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewProducts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/viewProducts",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"viewProducts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
