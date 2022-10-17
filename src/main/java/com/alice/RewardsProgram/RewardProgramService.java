@@ -22,6 +22,9 @@ public class RewardProgramService {
     final private double ONE_POINT_MINIMUM = 50.0;
     final private double TWO_POINT_MINIMUM = 100.00;
 
+    public RewardProgramService() {
+        transactionsByAccount = new HashMap<>();
+    }
 
     public Optional<Account> createAccount(String username, String password) {
         Account newAccount = accountService.addAccount(new Account(username,password)).orElse(null);
@@ -30,10 +33,11 @@ public class RewardProgramService {
         return Optional.of(newAccount);
     }
     public Optional<Transaction> makeTransaction(long accountId, List<Item> items, Date timestamp) {
-        if (accountService.getAccountById(accountId).isEmpty())
+        if (accountService==null)
+            accountService = new AccountService();
+        if (accountService.getAccountById(accountId)==null || accountService.getAccountById(accountId).isEmpty())
             return Optional.empty();
-        if (transactionsByAccount.get(accountId).isEmpty())
-            transactionsByAccount.put(accountId, new ArrayList<>());
+        transactionsByAccount.computeIfAbsent(accountId, k -> new ArrayList<>());
         final Transaction t = new Transaction();
         t.setTransactionId(timestamp.hashCode());
         t.setDate(timestamp);
@@ -96,5 +100,9 @@ public class RewardProgramService {
             rewardsPts += (price - ONE_POINT_MINIMUM);
 
         return rewardsPts;
+    }
+
+    public Optional<Item> putItem(Item newItem) {
+        return itemService.addItemToCatalog(newItem);
     }
 }
