@@ -1,6 +1,7 @@
 package com.alice.RewardsProgram.model;
 
 import com.alice.RewardsProgram.AccountService;
+import com.alice.RewardsProgram.AccountServiceImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,7 +10,7 @@ public class AccountServiceTest {
 
     @Test
     public void testAddDeleteAccounts() {
-        AccountService accountService = new AccountService();
+        AccountService accountService = new AccountServiceImpl();
         Account testAccount1 = new Account("jane.s","1234");
         Account testAccount2 = new Account("john.c", "5678");
         assertEquals((Long)0L, (Long)accountService.getSizeOfAccounts().orElseGet(()->0L));

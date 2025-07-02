@@ -34,7 +34,7 @@ public class RewardProgramService {
     }
     public Optional<Transaction> makeTransaction(long accountId, List<Item> items, Date timestamp) {
         if (accountService==null)
-            accountService = new AccountService();
+            accountService = new AccountServiceImpl();
         if (accountService.getAccountById(accountId)==null || accountService.getAccountById(accountId).isEmpty())
             return Optional.empty();
         transactionsByAccount.computeIfAbsent(accountId, k -> new ArrayList<>());

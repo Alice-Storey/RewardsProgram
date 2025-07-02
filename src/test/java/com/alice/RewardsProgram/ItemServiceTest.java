@@ -12,7 +12,7 @@ public class ItemServiceTest {
 
     @Test
     public void itemCatalogTest() {
-        ItemService itemService = new ItemService();
+        ItemService itemService = new ItemServiceImpl();
         Item item1 = new Item(1L, 3.99, "Broom");
         Item item2 = new Item(2L, 0.40, "Gum");
 
